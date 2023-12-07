@@ -1,4 +1,3 @@
-const http = require('http');
 const express = require("express");
 const fetch = require("node-fetch");
 const bodyParser = require("body-parser");
@@ -64,6 +63,6 @@ app.post("/", async (req, res) => {
     }
 });
 
-const server = http.createServer(app);
-
-server.listen(port);
+app.listen(port, () => {
+    console.log("Server is running....");
+});
