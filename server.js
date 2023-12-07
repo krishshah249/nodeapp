@@ -1,3 +1,4 @@
+const http = require('http');
 const express = require("express");
 const fetch = require("node-fetch");
 const bodyParser = require("body-parser");
@@ -7,6 +8,8 @@ require("dotenv").config();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
+
+const port = process.env.PORT || 8000 ;
 
 app.get("/", (req, res) => {
     let locDate = { temp: "Temp", disc: "Discription", location: "Location", humidity: "Humidity ", feel: "Feel ", speed: "Speed" };
@@ -61,6 +64,6 @@ app.post("/", async (req, res) => {
     }
 });
 
-app.listen(8000, () => {
-    console.log("Server is running....");
-});
+const server = http.createServer(app);
+
+server.listen(port);
